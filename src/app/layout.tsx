@@ -3,10 +3,13 @@ import { config } from "@/config";
 import { signOgImageUrl } from "@/lib/og-image";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
-const fontSans = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const ibmFont = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic", "latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -22,8 +25,8 @@ export const metadata: Metadata = {
       signOgImageUrl({
         title: config.blog.name,
       }),
-    ]
-  }
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -32,22 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased max-w-6xl m-auto",
-          fontSans.variable
-        )}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main>{children}</main>
-        </ThemeProvider>
-      </body>
+    <html lang="ar" dir="rtl">
+      <body className={ibmFont.className}>{children}</body>
     </html>
   );
 }

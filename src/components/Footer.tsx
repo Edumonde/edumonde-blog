@@ -9,7 +9,6 @@ export const Footer: FunctionComponent = () => {
       <div className="text-sm text-muted-foreground">
         © {config.blog.copyright} {new Date().getFullYear()}
       </div>
-      <DarkModeToggle />
     </section>
   );
 };
